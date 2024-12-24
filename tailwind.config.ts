@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+import plugin from "tailwindcss/plugin"
 
 export default {
   content: [
@@ -10,8 +11,25 @@ export default {
       fontFamily: {
         poppins: ["var(--font-poppins)"]
       },
-      colors: {}
+      colors: {
+        brand: {
+          DEFAULT: "#FA7275"
+        }
+      }
     }
   },
-  plugins: []
+  plugins: [
+    plugin(function ({ addBase, addComponents, addUtilities }) {
+      addBase({})
+      addComponents({})
+      addUtilities({
+        ".h1": {
+          "@apply font-bold text-[46px] leading-[56px]": {}
+        },
+        ".body-1": {
+          "@apply font-normal text-[16px] leading-[24px]": {}
+        }
+      })
+    })
+  ]
 } satisfies Config
